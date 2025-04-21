@@ -1,0 +1,18 @@
+/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+/* 1) Force the mat-select panel to be solid white + subtle shadow */
+.cdk-overlay-container .mat-select-panel {
+  background-color: #ffffff !important;
+  border-radius: 6px !important;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1) !important;
+}
+
+/* 2) Ensure all <mat-error> are bright red */
+.mat-error {
+  color: #d9534f !important;
+}
+
+/* 3) Also give the form-field fill background a crisp white */
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: #fff !important;
+}

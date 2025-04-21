@@ -1,0 +1,104 @@
+<div class="jsonforms max-w-3xl mx-auto mt-10 bg-white rounded-2xl shadow-xl p-8 space-y-8">
+  <h1 class="text-3xl font-bold text-center text-cyan-700 flex items-center justify-center gap-2">
+    User Registration Form
+  </h1>
+  <br>
+
+  <form [formGroup]="mainForm" (ngSubmit)="submitMain()" *ngIf="!showFeedback" class="space-y-6" novalidate>
+    <!-- Username -->
+    <div class="space-y-2">
+      <mat-form-field appearance="fill" class="w-full">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" />
+        <mat-error *ngIf="mainForm.get('username')?.hasError('required')">Required</mat-error>
+        <mat-error *ngIf="mainForm.get('username')?.hasError('minlength')">Min 2 characters</mat-error>
+      </mat-form-field>
+    </div>
+
+    <!-- Password -->
+    <div class="space-y-2">
+      <mat-form-field appearance="fill" class="w-full">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password" />
+        <mat-error *ngIf="mainForm.get('password')?.hasError('required')">Required</mat-error>
+        <mat-error *ngIf="mainForm.get('password')?.hasError('minlength')">Min 6 characters</mat-error>
+      </mat-form-field>
+    </div>
+
+    <!-- Name & Age -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <mat-form-field appearance="fill" class="w-full">
+        <mat-label>Full Name</mat-label>
+        <input matInput formControlName="name" />
+        <mat-error *ngIf="mainForm.get('name')?.hasError('required')">Required</mat-error>
+        <mat-error *ngIf="mainForm.get('name')?.hasError('minlength')">Min 2 characters</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="w-full">
+        <mat-label>Age</mat-label>
+        <input matInput type="number" formControlName="age" />
+        <mat-error *ngIf="mainForm.get('age')?.invalid">0–120 only</mat-error>
+      </mat-form-field>
+    </div>
+
+    <!-- Gender -->
+    <div class="space-y-2">
+      <label class="block font-medium text-gray-700">Gender</label>
+      <mat-radio-group formControlName="gender" class="flex gap-6">
+        <mat-radio-button *ngFor="let g of genderOptions" [value]="g">{{ g }}</mat-radio-button>
+      </mat-radio-group>
+      <div *ngIf="mainForm.get('gender')?.hasError('required')" class="text-sm text-red-600">Please select one</div>
+    </div>
+
+    <!-- Email -->
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="email" />
+      <mat-error *ngIf="mainForm.get('email')?.invalid">Valid email required</mat-error>
+    </mat-form-field>
+
+    <!-- Phone -->
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Phone Number</mat-label>
+      <input matInput formControlName="phoneNumber" />
+      <mat-error *ngIf="mainForm.get('phoneNumber')?.invalid">10-digit phone required</mat-error>
+    </mat-form-field>
+
+    <!-- Terms -->
+    <mat-checkbox formControlName="subscribe">
+      <span class="text-sm">I agree to the terms & conditions</span>
+    </mat-checkbox>
+    <div *ngIf="mainForm.get('subscribe')?.hasError('required')" class="text-sm text-red-600">
+      You must agree
+    </div>
+
+    <!-- Submit -->
+    <button type="submit" mat-raised-button color="primary" class="w-full py-3 text-lg font-semibold">
+      Submit Form 🚀
+    </button>
+  </form>
+
+  <!-- Feedback Form -->
+  <form *ngIf="showFeedback" [formGroup]="feedbackForm" (ngSubmit)="submitFeedback()" class="space-y-6" novalidate>
+    <h2 class="text-2xl font-semibold text-cyan-700">💬 Feedback</h2>
+
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Rate your experience (1 = Worst, 5 = Best)</mat-label>
+      <mat-select formControlName="rating" panelClass="mat-select-panel-fixed">
+        <mat-option *ngFor="let r of [1, 2, 3, 4, 5]" [value]="r">
+          {{ r }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="feedbackForm.get('rating')?.invalid">Please select a number</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Any comments?</mat-label>
+      <textarea matInput formControlName="comments"></textarea>
+    </mat-form-field>
+
+    <button type="submit" mat-raised-button color="accent" class="w-full py-3 text-lg font-semibold">
+      Submit Feedback
+    </button>
+  </form>
+</div>
