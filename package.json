@@ -8,6 +8,9 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:proj1": "node dist/proj1/server/server.mjs"
+
+
+    
   },
   "private": true,
   "dependencies": {

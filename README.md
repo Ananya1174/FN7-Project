@@ -5,6 +5,9 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 ## Development server
 
 To start a local development server, run:
+```bash
+npm install
+```
 
 ```bash
 ng serve
@@ -53,6 +56,10 @@ ng e2e
 ```
 
 Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+
+## Output 
+
+![Image](https://github.com/user-attachments/assets/716117c9-73bf-4c80-8d4e-e4f2bae46c18)
 
 ## Additional Resources
 
